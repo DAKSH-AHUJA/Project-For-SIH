@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticity validator</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <meta name="description" content="Smart, scalable, and secure certificate authenticity verification.">
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <img src="assets/logo.svg" alt="Logo" class="logo" />
+            <div class="brand-text">
+                <h1>Authenticity validator</h1>
+                <p>Smart, Scalable, Secure Verification</p>
+            </div>
+        </div>
+        <nav class="nav" id="siteNav">
+            <a href="#home" data-route="#home" class="active">Home</a>
+            <a href="#verify" data-route="#verify">Verify</a>
+            <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home" data-reveal>
+            <div class="hero">
+                <div class="hero-text">
+                    <h2>Authenticity Validator for Academia</h2>
+                    <p>Verify physical and digital certificates with OCR, formatting checks, and registry matching. Integrates with institutions and supports watermark/blockchain verification.</p>
+                    <div class="cta-row">
+                        <a class="btn primary cta" href="#verify" data-route="#verify">Start Verifying</a>
+                    </div>
+                </div>
+            </div>
+
+            <section class="features" data-reveal>
+                <div class="feature">
+                    <h3>Upload & OCR</h3>
+                    <p>Extracts name, roll number, marks, and certificate ID with client-side OCR mock.</p>
+                </div>
+                <div class="feature">
+                    <h3>Authenticity Checks</h3>
+                    <p>Format validation, checksum heuristics, and registry matching via mock data.</p>
+                </div>
+                <div class="feature">
+                    <h3>Privacy First</h3>
+                    <p>Runs locally in your browser for this demo; no data leaves your device.</p>
+                </div>
+                <div class="feature">
+                    <h3>Accessible</h3>
+                    <p>Keyboard-friendly forms and clear contrast for better readability.</p>
+                </div>
+            </section>
+
+            <section class="cards" data-reveal>
+                <a class="card" href="#verify" data-route="#verify">
+                    <h4>Verifier Portal</h4>
+                    <p>Employers, institutions, and agencies can check certificate authenticity.</p>
+                </a>
+            </section>
+        </section>
+
+        <!-- Verify Section -->
+        <section id="verify" data-reveal hidden>
+            <h2>Certificate Authenticity Checker</h2>
+            <section class="panel">
+                <div class="grid two">
+                    <div>
+                        <h3>1) Upload Certificate Image/PDF</h3>
+                        <div class="dropzone" id="dropzone">
+                            <input type="file" id="fileInput" accept="image/*,.pdf" />
+                            <p>Drag & drop or click to upload</p>
+                        </div>
+                        <div id="preview" class="preview"></div>
+                    </div>
+                    <div>
+                        <h3>2) Extracted Details (OCR - Mock)</h3>
+                        <form id="ocrForm" class="form">
+                            <label>Name <input type="text" id="name" placeholder="e.g., Aisha Verma" required></label>
+                            <div class="grid two">
+                                <label>Roll No <input type="text" id="roll" placeholder="e.g., 21CS1234" required></label>
+                                <label>Cert ID <input type="text" id="certId" placeholder="e.g., CG-2023-000123" required></label>
+                            </div>
+                            <label>Marks <input type="text" id="marks" placeholder="e.g., 86.5%" required></label>
+                            <label>Issuer <input type="text" id="issuer" placeholder="e.g., ABC University" required></label>
+                            <div class="actions">
+                                <button type="button" class="btn" id="mockOcr">Run Mock OCR</button>
+                                <button type="submit" class="btn primary">Check Authenticity</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" data-reveal>
+                <h3>Results</h3>
+                <div id="results" class="results"></div>
+            </section>
+        </section>
+
+        <!-- Institution/Admin sections removed -->
+    </main>
+
+    <footer class="site-footer">
+        <div class="foot-left">
+            <small>Government of jharkhand</small>
+        </div>
+        <div class="foot-right">
+            <button class="link" id="privacyBtn">Privacy & Access</button>
+        </div>
+    </footer>
+
+    <dialog id="privacyModal">
+        <form method="dialog" class="modal-card">
+            <h3>Data Privacy & Access Control</h3>
+            <p>This demo stores inputs locally in your browser. For production, role-based access control, audit logs, and encryption at rest/in transit are required.</p>
+            <ul>
+                <li>Only authorized users may access identifiable student data.</li>
+                <li>Verification logs should be retained per policy and anonymized where possible.</li>
+                <li>Integrations should use signed requests and institution-issued keys.</li>
+            </ul>
+            <div class="modal-actions">
+                <button class="btn" value="cancel">Close</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="assets/app.js"></script>
+    <script>
+    (function(){
+        function setActive(route){
+            var sections = ['#home','#verify'];
+            sections.forEach(function(id){
+                var el = document.querySelector(id);
+                if(!el) return;
+                if(id === route){ el.removeAttribute('hidden'); }
+                else { el.setAttribute('hidden',''); }
+            });
+            document.querySelectorAll('#siteNav a[data-route]').forEach(function(a){
+                if(a.getAttribute('data-route') === route){ a.classList.add('active'); }
+                else { a.classList.remove('active'); }
+            });
+            // Scroll to top on route change
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+        function currentRoute(){
+            var h = location.hash || '#home';
+            if(['#home','#verify'].indexOf(h) === -1) h = '#home';
+            return h;
+        }
+        window.addEventListener('hashchange', function(){ setActive(currentRoute()); });
+        window.addEventListener('load', function(){ setActive(currentRoute()); });
+        document.querySelectorAll('a[data-route]').forEach(function(a){
+            a.addEventListener('click', function(e){
+                var r = a.getAttribute('data-route');
+                if(!r) return;
+                // rely on hash to change; nothing else needed
+            });
+        });
+    })();
+    </script>
+    <script src="assets/verify.js"></script>
+    
+</body>
+</html>
+
+

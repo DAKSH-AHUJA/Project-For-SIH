@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Certificate - Authenticity validator</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <img src="assets/logo.svg" alt="Logo" class="logo" />
+            <div class="brand-text">
+                <h1>Authenticity validator</h1>
+                <p>Verification Portal</p>
+            </div>
+        </div>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="verify.html" class="active">Verify</a>
+            <a href="institution.html">Institution</a>
+            <a href="admin.html">Admin</a>
+            <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Certificate Authenticity Checker</h2>
+        <section class="panel" data-reveal>
+            <div class="grid two">
+                <div>
+                    <h3>1) Upload Certificate Image/PDF</h3>
+                    <div class="dropzone" id="dropzone">
+                        <input type="file" id="fileInput" accept="image/*,.pdf" />
+                        <p>Drag & drop or click to upload</p>
+                    </div>
+                    <div id="preview" class="preview"></div>
+                </div>
+                <div>
+                    <h3>2) Extracted Details (OCR - Mock)</h3>
+                    <form id="ocrForm" class="form">
+                        <label>Name <input type="text" id="name" placeholder="e.g., Aisha Verma" required></label>
+                        <div class="grid two">
+                            <label>Roll No <input type="text" id="roll" placeholder="e.g., 21CS1234" required></label>
+                            <label>Cert ID <input type="text" id="certId" placeholder="e.g., CG-2023-000123" required></label>
+                        </div>
+                        <label>Marks <input type="text" id="marks" placeholder="e.g., 86.5%" required></label>
+                        <label>Issuer <input type="text" id="issuer" placeholder="e.g., ABC University" required></label>
+                        <div class="actions">
+                            <button type="button" class="btn" id="mockOcr">Run Mock OCR</button>
+                            <button type="submit" class="btn primary">Check Authenticity</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel" data-reveal>
+            <h3>Results</h3>
+            <div id="results" class="results"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <small>Government of jharkhand</small>
+        <button class="link" id="privacyBtn">Privacy & Access</button>
+    </footer>
+
+    <dialog id="privacyModal">
+        <form method="dialog" class="modal-card">
+            <h3>Data Privacy & Access Control</h3>
+            <p>This demo runs entirely in your browser and uses mock data to simulate verification workflows.</p>
+            <div class="modal-actions">
+                <button class="btn" value="cancel">Close</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="assets/app.js"></script>
+    <script src="assets/verify.js"></script>
+</body>
+</html>
+
