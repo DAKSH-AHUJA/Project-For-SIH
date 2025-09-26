@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institution Module - Authenticity validator</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <img src="assets/logo.svg" alt="Logo" class="logo" />
+            <div class="brand-text">
+                <h1>Authenticity validator</h1>
+                <p>Institution Module</p>
+            </div>
+        </div>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="verify.html">Verify</a>
+            <a href="institution.html" class="active">Institution</a>
+            <a href="admin.html">Admin</a>
+            <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Upload Certificate Records</h2>
+        <section class="panel" data-reveal>
+            <h3>Bulk Upload (CSV)</h3>
+            <p>CSV columns: name,roll,certId,marks,issuer,issueDate,hash</p>
+            <div class="grid two">
+                <label class="file">
+                    <input type="file" id="csvInput" accept=".csv">
+                </label>
+                <div>
+                    <button id="downloadTemplate" class="btn">Download Template</button>
+                    <button id="importCsv" class="btn primary">Import</button>
+                </div>
+            </div>
+            <div id="csvPreview" class="table-wrap"></div>
+        </section>
+
+        <section class="panel" data-reveal>
+            <h3>Real-time Issuance (Mock)</h3>
+            <form id="issueForm" class="form">
+                <div class="grid two">
+                    <label>Name <input type="text" id="i_name" required></label>
+                    <label>Roll <input type="text" id="i_roll" required></label>
+                </div>
+                <div class="grid two">
+                    <label>Cert ID <input type="text" id="i_certId" required></label>
+                    <label>Marks <input type="text" id="i_marks" required></label>
+                </div>
+                <label>Issuer <input type="text" id="i_issuer" required></label>
+                <div class="actions">
+                    <button type="button" id="generateWatermark" class="btn">Generate Watermarked SVG</button>
+                    <button type="submit" class="btn primary">Add to Registry (Mock)</button>
+                </div>
+            </form>
+            <div id="watermarkPreview" class="preview"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <small>Government of jharkhand</small>
+        <button class="link" id="privacyBtn">Privacy & Access</button>
+    </footer>
+
+    <dialog id="privacyModal">
+        <form method="dialog" class="modal-card">
+            <h3>Data Privacy & Access Control</h3>
+            <p>Institution data remains in local storage in this demo. Use secure APIs and signed uploads in production.</p>
+            <div class="modal-actions">
+                <button class="btn" value="cancel">Close</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="assets/app.js"></script>
+    <script src="assets/institution.js"></script>
+</body>
+</html>
+
