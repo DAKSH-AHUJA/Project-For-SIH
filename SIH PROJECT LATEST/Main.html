@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticity validator</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <meta name="description" content="Smart, scalable, and secure certificate authenticity verification.">
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <img src="assets/logo.svg" alt="Logo" class="logo" />
+            <div class="brand-text">
+                <h1>Authenticity validator</h1>
+                <p>Smart, Scalable, Secure Verification</p>
+            </div>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="active">Home</a>
+            <a href="verify.html">Verify</a>
+            <a href="institution.html">Institution</a>
+            <a href="admin.html">Admin</a>
+            <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero" data-reveal>
+            <div class="hero-text">
+                <h2>Authenticity Validator for Academia</h2>
+                <p>Verify physical and digital certificates with OCR, formatting checks, and registry matching. Integrates with institutions and supports watermark/blockchain verification.</p>
+                <div class="cta-row">
+                    <a class="btn primary cta" href="verify.html">Start Verifying</a>
+                    <a class="btn cta-outline" href="institution.html">Institution Onboarding</a>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="features" data-reveal>
+            <div class="feature">
+                <h3>Upload & OCR</h3>
+                <p>Extracts name, roll number, marks, and certificate ID with client-side OCR mock.</p>
+            </div>
+            <div class="feature">
+                <h3>Authenticity Checks</h3>
+                <p>Format validation, checksum heuristics, and registry matching via mock data.</p>
+            </div>
+            <div class="feature">
+                <h3>Watermark/Blockchain</h3>
+                <p>Embeds digital watermark SVG and placeholder blockchain hash for new certificates.</p>
+            </div>
+            <div class="feature">
+                <h3>Admin Insights</h3>
+                <p>Monitor trends, alerts, and manage blacklist in the dashboard.</p>
+            </div>
+        </section>
+
+        <section class="cards" data-reveal>
+            <a class="card" href="verify.html">
+                <h4>Verifier Portal</h4>
+                <p>Employers, institutions, and agencies can check certificate authenticity.</p>
+            </a>
+            <a class="card" href="institution.html">
+                <h4>Institution Module</h4>
+                <p>Bulk upload CSVs or simulate real-time issuance with secure watermarking.</p>
+            </a>
+            <a class="card" href="admin.html">
+                <h4>Admin Dashboard</h4>
+                <p>Track verifications, detect anomalies, and manage blacklists.</p>
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="foot-left">
+            <small>Government of jharkhand</small>
+        </div>
+        <div class="foot-right">
+            <button class="link" id="privacyBtn">Privacy & Access</button>
+        </div>
+    </footer>
+
+    <dialog id="privacyModal">
+        <form method="dialog" class="modal-card">
+            <h3>Data Privacy & Access Control</h3>
+            <p>This demo stores inputs locally in your browser. For production, role-based access control, audit logs, and encryption at rest/in transit are required.</p>
+            <ul>
+                <li>Only authorized users may access identifiable student data.</li>
+                <li>Verification logs should be retained per policy and anonymized where possible.</li>
+                <li>Integrations should use signed requests and institution-issued keys.</li>
+            </ul>
+            <div class="modal-actions">
+                <button class="btn" value="cancel">Close</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>
+
